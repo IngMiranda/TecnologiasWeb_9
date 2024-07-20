@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restablecer Contraseña - UPEM Tecámac</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        .header {
+            background: url('img/Encabezado.png') no-repeat center;
+            background-size: 55% auto;
+            height: 220px;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .welcome-message {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            margin: 20px;
+            
+        }
+        .message1 {
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            margin: 20px;
+        }
+        .message2 {
+            text-align: center;
+            font-style: italic;
+            font-size: 18px;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: url('img/Fondo.png') no-repeat center;
+            background-size: cover;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin: 20px 0;
+        }
+        .form-group label {
+            display: block;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #070546;
+        }
+        .form-group input {
+            width: 80%;
+            padding: 12px;
+            margin: 10px auto;
+            display: block;
+            border-radius: 5px;
+            border: 1px solid #0a0a0a;
+        }
+        .button-container {
+            text-align: right;
+        }
+        .container input[type="submit"] {
+            padding: 10px 20px;
+            border: 2px solid #070546;
+            border-radius: 5px;
+            background-color: #8b0c0c;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .container input[type="submit"]:hover {
+            background-color: #070546;
+        }
+        .footer {
+            margin-top: 20px;
+            font-style: italic;
+            font-size: 14px;
+            text-align: center;
+            background-color: #070546;
+            padding: 20px 0;
+            color: white;
+        }
+        .notification {
+            display: none;
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            background-color: #8b0c0c;
+            color: white;
+            border: 2px solid #070546;
+            border-radius: 5px;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .notification.error {
+            background-color: #8b0c0c;
+        }
+        .notification.success {
+            background-color: #070546;
+        }
+        .notification .title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .notification .message {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .notification .button {
+            background-color: #070546;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .notification.success .button {
+            background-color: #8b0c0c;
+        }
+        .notification .button:hover {
+            background-color: #fff;
+            color: #8b0c0c;
+        }
+    </style>
+</head>
+<body>
+    <div class="header"></div>
+    <h1 class="welcome-message">Bienvenid@ nuevamente Vanessa</h1>
+    <h2 class="message1">Restablece tu Contraseña<br><br></h2>
+    <p class="message2">Para recuperar tus datos de acceso ingresa una nueva contraseña y confírmala.</p>
+    <p class="message2">Debe tener al menos 8 caracteres, incluyendo letras mayúsculas y minúsculas, y al menos un carácter especial.</p>
+    <div class="container">
+        <form id="reset-form" onsubmit="return validateForm();">
+            <div class="form-group">
+                <label for="nueva-password">Nueva contraseña:</label>
+                <input type="password" id="nueva-password" name="nueva-password">
+            </div>
+            <div class="form-group">
+                <label for="confirmar-password">Confirmar contraseña:</label>
+                <input type="password" id="confirmar-password" name="confirmar-password">
+            </div>
+            <div class="button-container">
+                <input type="submit" value="ESTABLECER">
+            </div>
+        </form>
+    </div>
+    <div id="notification" class="notification">
+        <div class="title">Notificación</div>
+        <div id="notification-message" class="message"></div>
+        <button class="button" onclick="hideNotification()">Aceptar</button>
+    </div>
+    <div class="footer">
+        © Derechos reservados a Nancy Vanessa Cayetano Morales / Karla Nelly Arteaga Sánchez
+    </div>
+    <script>
+        function showNotification(message, type) {
+            var notification = document.getElementById('notification');
+            var title = type === 'success' ? 'Notificación' : 'Error';
+            var backgroundColor = type === 'success' ? '#070546' : '#8b0c0c';
+            var buttonColor = type === 'success' ? '#8b0c0c' : '#070546';
+            
+            document.getElementById('notification-message').textContent = message;
+            notification.style.backgroundColor = backgroundColor;
+            notification.querySelector('.title').textContent = title;
+            notification.querySelector('.button').style.backgroundColor = buttonColor;
+            notification.style.display = 'block';
+        }
+
+        function hideNotification() {
+            document.getElementById('notification').style.display = 'none';
+        }
+
+        function validateForm() {
+            var nuevaPassword = document.getElementById('nueva-password').value;
+            var confirmarPassword = document.getElementById('confirmar-password').value;
+            var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+            if (!nuevaPassword || !confirmarPassword) {
+                showNotification('No pueden quedar campos vacíos.', 'error');
+                return false; // Previene el envío del formulario
+            }
+
+            if (nuevaPassword !== confirmarPassword) {
+                showNotification('Las contraseñas no coinciden.', 'error');
+                return false; // Previene el envío del formulario
+            }
+
+            if (!passwordPattern.test(nuevaPassword)) {
+                showNotification('Formato inválido.', 'error');
+                return false; // Previene el envío del formulario
+            }
+
+            showNotification('Se ha cambiado con exito la contraseña.', 'success');
+            setTimeout(function() {
+                window.location.href = 'index.html'; // Redirige a la página de inicio después de 3 segundos
+            }, 4000); // Ajusta el tiempo si es necesario
+            return false; // Previene el envío del formulario
+        }
+    </script>
+</body>
+</html>
