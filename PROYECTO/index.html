@@ -3,28 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Alumnos</title>
+    <title>Portal Alumnos - UPEM Tecámac</title>
     <link rel="stylesheet" href="styles/estilos.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
 </head>
-<body class="center-content">
-    <header>
-        <div class="image-container">
-            <img src="" alt="Imagen de Fondo" class="background-image">
-            <img src="" alt="Imagen Superior" class="overlay-image">
-        </div>
-    </header>
-    <main>
-        <div class="form-group">
-        <label>Matricula:</label>
-        <input type="text" id="matricula" name="matricula" /><br>
-    </div><div class="form-group">
-        <label>Contraseña:</label>
-        <input type="password" id="contrasena" name="contrasena" />
+<body>
+    <div class="header"></div>
+    <h1 class="welcome-message">Bienvenido al portal alumnos</h1>
+    <div class="container">
+        <form id="login-form">
+            <div class="form-group">
+                <label for="matricula"> Matrícula:<br></label>
+                <input type="text" id="matricula" placeholder=" ">
+            </div>
+            <div class="form-group">
+                <label for="password"> Contraseña:<br></label>
+                <input type="password" id="password" placeholder=" ">
+                <a href="recuperacion.html" class="forgot-password" style="color: #a30404;"> Olvidé mi contraseña</a>
+            </div>
+            <div class="button-container">
+                <input type="button" value="INGRESAR" onclick="checkForm()">
+            </div>
+        </form>
     </div>
-        <a href="recuperacion.html" class="forgot-password">Olvidé mi contraseña</a>
-        <button class="access-button">Acceder</button>
-    </main>
+
+    <div id="notification" class="notification">
+        <div class="title">Error</div>
+        <div id="notification-message" class="message"></div>
+        <button class="button" onclick="hideNotification()">Aceptar</button>
+    </div>
+
+    <div class="footer">
+        © Derechos reservados a Nancy Vanessa Cayetano Morales / Karla Nelly Arteaga Sánchez
+    </div>
+    
     <script src="scripts/main.js"></script>
 </body>
 </html>

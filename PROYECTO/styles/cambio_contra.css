@@ -1,0 +1,134 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+}
+.header {
+    background: url('img/Encabezado.png') no-repeat center;
+    background-size: 55% auto;
+    height: 220px;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.welcome-message {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 20px;
+    
+}
+.message1 {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 20px;
+}
+.message2 {
+    text-align: center;
+    font-style: italic;
+    font-size: 18px;
+    margin: 20px;
+}
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: url('img/Fondo.png') no-repeat center;
+    background-size: cover;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.form-group {
+    margin: 20px 0;
+}
+.form-group label {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #070546;
+}
+.form-group input {
+    width: 80%;
+    padding: 12px;
+    margin: 10px auto;
+    display: block;
+    border-radius: 5px;
+    border: 1px solid #0a0a0a;
+}
+.button-container {
+    text-align: right;
+}
+.container input[type="submit"] {
+    padding: 10px 20px;
+    border: 2px solid #070546;
+    border-radius: 5px;
+    background-color: #8b0c0c;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.container input[type="submit"]:hover {
+    background-color: #070546;
+}
+.footer {
+    margin-top: 20px;
+    font-style: italic;
+    font-size: 14px;
+    text-align: center;
+    background-color: #070546;
+    padding: 20px 0;
+    color: white;
+}
+.notification {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background-color: #8b0c0c;
+    color: white;
+    border: 2px solid #070546;
+    border-radius: 5px;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.notification.error {
+    background-color: #8b0c0c;
+}
+.notification.success {
+    background-color: #070546;
+}
+.notification .title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.notification .message {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.notification .button {
+    background-color: #070546;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.notification.success .button {
+    background-color: #8b0c0c;
+}
+.notification .button:hover {
+    background-color: #fff;
+    color: #8b0c0c;
+}

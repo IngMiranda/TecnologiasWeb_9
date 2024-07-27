@@ -1,24 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recuperar contraseña</title>
+    <title>Sistema de Control Escolar - UPEM Tecámac</title>
+    <link rel="stylesheet" href="styles/estilo_recuperacion.css">
 </head>
 <body>
-    <h2>SISTEMA DE CONTROL ESCOLAR</h2>
-    <div class="text">Olvide mi contraseña</div>
-    <br>
-    <div class="text">Para recuperar tus datos de acceso 
-        ingresa tu matricula y verifica tu correo</div>
-        <div class="form-group">
-            <label>Matricula:</label>
-            <input type="text" id="matricula" name="matricula" /><br>
-        </div>
-        <div>
-            <a class="" href="establecer_pass.html"
-            >Enviar</a>
-          
-          </div>
-    </body>
+    <div class="header"></div>
+    <h1 class="welcome-message">SISTEMA DE CONTROL ESCOLAR</h1>
+    <h2 class="message1">Olvidé mi contraseña<br></h2>
+    <p class="message2">Para recuperar tus datos de acceso ingresa tu matrícula y verifica tu correo.</p>
+    <div class="container">
+        <form id="recovery-form" onsubmit="return checkForm();">
+            <div class="form-group">
+                <label for="matricula">Matrícula:<br><br></label>
+                <input type="text" id="matricula">
+            </div>
+            <div class="button-container">
+                <input type="submit" value="Enviar">
+            </div>
+        </form>
+    </div>
+    <div id="notification" class="notification">
+        <div id="notification-title" class="title">Error</div>
+        <div id="notification-message" class="message"></div>
+        <button id="notification-close" class="button" onclick="hideNotification()">X</button>
+        <button id="notification-accept" class="button" onclick="hideNotification()">Aceptar</button>
+    </div>
+    <div class="footer">
+        © Derechos reservados a Nancy Vanessa Cayetano Morales / Karla Nelly Arteaga Sánchez
+    </div>
+    <script src="scripts/recuperacion.js"></script>
+</body>
 </html>
