@@ -1,0 +1,3 @@
+# Archivo para excluir archivos y directorios no deseados del control de versiones:
+node_modules/
+.DS_Store

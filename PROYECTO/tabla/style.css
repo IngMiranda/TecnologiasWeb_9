@@ -1,0 +1,65 @@
+body {background-image:url(https://i1.wp.com/www.silocreativo.com/wp-content/uploads/2015/03/fondo-gris-degradado.jpg?resize=600%2C370&quality=100&strip=all);
+
+}           
+          
+.aviso{
+                font-family: Arial 
+                text-align: center;
+                font-weight: bold;
+                font-size: 20pt;
+                color: #030A42;
+                }
+
+
+           .borde{ margin: 5px; border: 5px  ridge #16A085;
+                  background-color:#999999;
+                  width:83%;
+                  border-radius:10px;
+                  padding:5px;
+                  float:right;
+                                  
+                  } 
+            body {font-family: "Lato", sans-serif;}
+
+
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #112c3d;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+   }
+
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .sidenav a:hover {
+    color: #242525;
+   }
+
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+  @media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+  }                
+
+  .barralateral{float:left; width:130px; margin:1px ;
+   padding: 1px; background-color: rgba(189, 236, 142, 0.64);}
