@@ -5,7 +5,7 @@ body {
     background-color: #ffffff;
 }
 .header {
-    background: url('img/Encabezado.png') no-repeat center;
+    background: url('/images/Encabezado.png') no-repeat center;
     background-size: 55% auto;
     height: 220px;
     background-color: transparent;
@@ -36,7 +36,7 @@ body {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    background: url('img/Fondo.png') no-repeat center;
+    background: url('/img/Fondo.png') no-repeat center;
     background-size: cover;
     border-radius: 20px;
     text-align: center;

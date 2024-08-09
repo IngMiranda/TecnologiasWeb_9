@@ -6,7 +6,7 @@ body {
 }
 
 .header {
-    background: url('img/Encabezado.png') no-repeat center;
+    background: url('/images/Encabezado.png') no-repeat center;
     background-size: 60% auto;
     height: 180px;
     background-color: transparent;

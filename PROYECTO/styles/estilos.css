@@ -7,7 +7,7 @@
         }
 
         .header {
-            background: url('images/Encabezado.png') no-repeat center;
+            background: url('/images/Encabezado.png') no-repeat center;
             background-size: 60% auto;
             height: 180px;
             background-color: transparent;
@@ -22,7 +22,7 @@
             max-width: 600px;
             margin: 0 auto;
             padding: 10px;
-            background: url('images/Fondo.png') no-repeat center;
+            background: url('/images/Fondo.png') no-repeat center;
             background-size: cover;
             border-radius: 20px;
             text-align: center;
