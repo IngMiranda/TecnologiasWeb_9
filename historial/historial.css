@@ -1,0 +1,115 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: relative;
+    background-color: #f8f9fa;
+}
+
+.header-image {
+    width: 100%;
+    height: auto;
+}
+
+.header-buttons {
+    position: absolute;
+    top: 70px; /* Ajusta este valor para bajar los botones */
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 40px); /* Ajusta el ancho según el padding */
+}
+
+.btn-menu {
+    background-color: #ff000000;    /* Color de fondo rojo */
+    border: 2px solid rgba(0, 0, 255, 0);   /* Borde azul */
+    color: rgb(255, 255, 255);               /* Color del texto */
+    font-size: 24px;          /* Tamaño del icono (tres líneas) */
+    cursor: pointer;          /* Cambia el cursor al pasar sobre el botón */
+    padding: 10px;            /* Espaciado interno del botón */
+    border-radius: 4px;      /* Bordes redondeados */
+    display: inline-flex;     /* Ajusta el diseño para alinear el texto o icono */
+    align-items: center;      /* Centra el texto/icono verticalmente */
+    justify-content: center;  /* Centra el texto/icono horizontalmente */
+}
+
+.btn-exit {
+    background-color: rgba(255, 255, 255, 0);    /* Color de fondo rojo */
+    border: 2px solid rgba(255, 255, 255, 0);   /* Borde azul */
+    color: rgb(255, 255, 255);               /* Color del texto */
+    font-size: 16px;          /* Tamaño del texto */
+    cursor: pointer;          /* Cambia el cursor al pasar sobre el botón */
+    padding: 10px;            /* Espaciado interno del botón */
+    border-radius: 4px;      /* Bordes redondeados */
+    display: inline-flex;     /* Ajusta el diseño para alinear el texto */
+    align-items: center;      /* Centra el texto verticalmente */
+    justify-content: center;  /* Centra el texto horizontalmente */
+}
+
+.container {
+    padding: 20px;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Alinea los elementos al final del contenedor */
+    margin-bottom: 20px;
+}
+
+.search-input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: 10px; /* Espacio entre el campo de búsqueda y el ícono */
+}
+
+.search-icon {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px; /* Espacio entre el campo de búsqueda y el ícono */
+}
+
+.search-icon-img {
+    width: 20px;
+    height: 20px;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.btn {
+    color: white;
+    background-color: red;
+    border: 2px solid blue;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 5px;
+    text-align: center;
+}
+
+.btn-download {
+    float: right;
+}
