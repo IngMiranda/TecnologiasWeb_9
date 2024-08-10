@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calificaciones - UPEM Tecámac</title>
+    <style>
+        html, body {
+            height: 100%; /* Asegura que el cuerpo y el HTML ocupen el 100% de la altura */
+            margin: 0; /* Elimina el margen por defecto */
+            display: flex; /* Establece un contenedor flexible */
+            flex-direction: column; /* Coloca los hijos en columna */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+        }
+        .header {
+            background: url('img/Encabezado.jpg') no-repeat center;
+            background-size: 100% auto;
+            height: 220px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .welcome-message {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            margin: 20px;
+        }
+        .footer {
+            margin-top: auto; /* Empuja el footer hacia abajo */
+            font-style: italic;
+            font-size: 14px;
+            text-align: center;
+            background-color: #070546;
+            padding: 20px 0;
+            color: white;
+            width: 100%; /* Asegura que el footer ocupe todo el ancho */
+        }
+        table {
+            margin: 20px auto; /* Centrar las tablas */
+            border-collapse: collapse; /* Colapsar bordes */
+            width: 95%; /* Ancho de la primera tabla */
+        }
+        .tabla-1 th,
+        .tabla-1 td {
+            border: none; /* Quitar los bordes de las celdas */
+            padding: 8px; /* Espaciado dentro de las celdas */
+        }
+        .logout {
+            position: absolute; /* Posiciona el elemento */
+            top: 130px; /* Ajusta la distancia desde la parte superior (100px más abajo) */
+            right: 40px; /* Ajusta la distancia desde el lado derecho */
+        }
+        .logout a {
+            text-decoration: underline; /* Subrayado */
+            color: #ffffff; /* Color blanco para el texto */
+            font-size: 18px; /* Tamaño de la fuente */
+        }
+        .menu-button {
+            position: absolute; /* Posiciona el elemento */
+            top: 130px; /* La misma altura que el enlace "Salir" */
+            left: 30px; /* Ajusta la distancia desde el lado izquierdo */
+            cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+        }
+        .line {
+            width: 30px; /* Ancho de las líneas */
+            height: 5px; /* Altura de las líneas */
+            background-color: white; /* Color blanco para las líneas */
+            margin: 4px 0; /* Espaciado entre líneas */
+        }
+        .user-info {
+            position: absolute; /* Posiciona el elemento */
+            top: 130px; /* La misma altura que el enlace "Salir" */
+            right: 140px; /* Ajusta la distancia desde el lado derecho para que no se superponga con el botón "Salir" */
+            color: #ffffff; /* Color blanco para el texto */
+            text-align: left; /* Alinear el texto a la derecha */
+            font-size: 16px; /* Tamaño de la fuente */
+        }
+    </style>
+</head>
+<body>
+    <div class="header"></div>
+    <h1 class="welcome-message">CALIFICACIONES</h1>
+    <div class="logout">
+        <a href="javascript:void(0);" onclick="salir()">Salir</a>
+    </div>
+    <div class="menu-button" onclick="irInicio()">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <div class="user-info">
+        <div>Nombre Apellido</div>
+        <div>123456789</div>
+    </div>
+    
+    <!-- Primera tabla -->
+    <div class="tabla-1">
+        <table>
+            <thead>
+                <tr>
+                    <th>Clave</th>
+                    <th>Materia</th>
+                    <th>1er <br>Parcial</th>
+                    <th>2do <br>Parcial</th>
+                    <th>Ordinario</th>
+                    <th>Extraordinario</th>
+                    <th>Promedio</th>
+                    <th>%<br>Asistencia</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dato 1</td>
+                    <td>Dato 2</td>
+                    <td>Dato 3</td>
+                    <td>Dato 4</td>
+                    <td>Dato 5</td>
+                    <td>Dato 6</td>
+                    <td>Dato 7</td>
+                    <td>Dato 8</td>
+                    <td>Dato 9</td>
+                </tr>
+                <tr>
+                    <td>Dato 1</td>
+                    <td>Dato 2</td>
+                    <td>Dato 3</td>
+                    <td>Dato 4</td>
+                    <td>Dato 5</td>
+                    <td>Dato 6</td>
+                    <td>Dato 7</td>
+                    <td>Dato 8</td>
+                    <td>Dato 9</td>
+                </tr>
+                <tr>
+                    <td>Dato 1</td>
+                    <td>Dato 2</td>
+                    <td>Dato 3</td>
+                    <td>Dato 4</td>
+                    <td>Dato 5</td>
+                    <td>Dato 6</td>
+                    <td>Dato 7</td>
+                    <td>Dato 8</td>
+                    <td>Dato 9</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="promedio-global" style="text-align: center;">
+        <h2>PROMEDIO GLOBAL: <span id="promedioValor"></span></h2>
+    </div>
+    <div class="footer">
+        © Derechos reservados a Nancy Vanessa Cayetano Morales / Karla Nelly Arteaga Sánchez
+    </div>
+
+    <script>
+        function salir() {
+            // Aquí puedes agregar la lógica para salir, como redirigir a otra página o cerrar sesión
+            alert("Saliendo..."); // Ejemplo de alerta
+            // Redirigir a otra página
+            // window.location.href = 'pagina_de_salida.html'; // Descomenta y cambia por tu URL
+        }
+
+        function irInicio() {
+            // Redirige a la página de inicio
+            window.location.href = 'pagina_de_inicio.html'; // Cambia 'pagina_de_inicio.html' por la URL de tu página de inicio
+        }
+    </script>
+</body>
+</html>
