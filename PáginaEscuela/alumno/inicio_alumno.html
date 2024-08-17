@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidad Universitaria</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        .title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #000000; /* Color negro */
+            padding: 10px;
+            background-color: #f5f5f5;
+            margin: 0;
+        }
+        .header {
+            height: 220px; /* Ajusta este valor para cambiar la altura del encabezado */
+            background-color: transparent;
+            position: relative;
+            padding: 0 20px;
+            text-align: center; /* Centra el contenido horizontalmente */
+            margin-top: -6px; /* Ajusta este valor para mover el encabezado más abajo o arriba */
+        }
+
+        .header img {
+            max-width: 65%; /* Ajusta el tamaño de la imagen del contenedor */
+            height: auto; /* Mantiene la proporción de la imagen */
+        }
+
+        .menu {
+            position: absolute;
+            top: 52%; /* Ajusta según sea necesario */
+            left: 250px; /* Ajusta según sea necesario */
+            transform: translateY(-50%); /* Centra verticalmente */
+            z-index: 1000;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu ul li {
+            display: inline-block;
+            position: relative;
+        }
+
+        .menu ul li a {
+            background-color: #8b0c0c;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu ul li a:hover {
+            background-color: #b71c1c;
+        }
+
+        .menu ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #070546;
+            padding: 0;
+            margin: 0;
+            border-radius: 5px;
+        }
+
+        .menu ul li ul li {
+            display: block;
+        }
+
+        .menu ul li ul li a {
+            padding: 10px;
+            background-color: #070546;
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+        .menu ul li ul li a:hover {
+            background-color: #8b0c0c;
+        }
+
+        .menu ul li:hover ul {
+            display: block;
+        }
+
+        .menu .hamburger {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .user-info {
+            position: absolute;
+            top: 123px;
+            right: 240px;
+            color: white;
+            text-align: right;
+        }
+
+        .user-info span {
+            display: block;
+        }
+
+        .user-info a {
+            color: white;
+            text-decoration: underline;
+            margin-left: 240px;
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: transparent;
+            border: none;
+        }
+
+        .info-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+            gap: 20px; /* Añade espacio entre la imagen y la información */
+        }
+
+        .info-photo {
+            text-align: center;
+        }
+
+        .info-photo img {
+            width: 200px; /* Ajusta el tamaño de la imagen aquí */
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .info-details {
+            text-align: right;
+        }
+
+        .info-header {
+            font-size: 20px;
+            font-weight: bold;
+            color: #0000FF; /* Color azul */
+            margin-bottom: 20px;
+        }
+
+        .info-details div {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .info-details label {
+            margin-right: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            color: #8b0c0c; /* Color rojo */
+        }
+
+        .info-details input {
+            padding: 5px;
+            font-size: 16px;
+            color: white;
+            background-color: #8b0c0c; /* Fondo rojo */
+            border: 2px solid #070546; /* Contorno azul */
+            border-radius: 5px;
+            text-align: center;
+            width: 306px; /* Ajusta el ancho del campo de texto aquí */
+            box-sizing: border-box;
+        }
+
+        .info-registered {
+            margin-top: 20px;
+            text-align: left;
+            max-width: 600px; /* Tamaño máximo del recuadro */
+            margin: 0 auto;
+        }
+
+        .info-registered div {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .info-registered label {
+            font-weight: bold;
+            font-size: 16px;
+            color: #8b0c0c;
+            margin-right: 10px;
+            width: 150px; /* Ancho fijo para las etiquetas */
+            text-align: right;
+        }
+
+        .info-registered input {
+            flex: 1;
+            padding: 5px;
+            font-size: 16px;
+            color: #070546; /* Color del texto */
+            background-color: #ffffff; /* Fondo blanco */
+            border: 2px solid #070546; /* Contorno azul */
+            border-radius: 5px;
+        }
+
+        .button-group {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .button-group a {
+            background-color: #8b0c0c;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            display: inline-block;
+            border: 2px solid #070546; /* Contorno azul */
+        }
+
+        .button-group a:hover {
+            background-color: #b71c1c;
+        }
+
+        .notification {
+            display: none;
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            background-color: #8b0c0c; /* Fondo rojo para la notificación */
+            color: white;
+            border: 2px solid #070546; /* Contorno azul */
+            border-radius: 5px;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(79, 66, 66, 0.5);
+            z-index: 1000; /* Asegura que la notificación esté por encima de otros elementos */
+        }
+
+        .notification .title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .notification .message {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .notification .button {
+            background-color: #070546; /* Fondo azul para el botón */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none; /* Elimina subrayado */
+        }
+
+        .notification .button:hover {
+            background-color: #ffffff; /* Fondo blanco en hover */
+            color: #070546; /* Texto azul en hover */
+        }
+
+        .error-notification {
+            background-color: #8b0c0c; /* Fondo rojo para errores */
+            border-color: #8b0c0c; /* Contorno rojo oscuro */
+        }
+
+        .footer {
+            text-align: center;
+            background-color: #070546;
+            color: white;
+            padding: 10px;
+            border-radius: 0 0 10px 10px;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="inicio_alumno.html">
+            <img src="../img/Encabezado.png" alt="Encabezado">
+        </a>
+        <div class="menu">
+            <ul>
+                <li>
+                    <a href="#" class="hamburger"><i class="fas fa-bars"></i></a>
+                    <ul>
+                        <li><a href="horario_alumno.html">Horario</a></li>
+                        <li><a href="calificaciones_alumno.html">Calificaciones</a></li>
+                        <li><a href="historial.html">Historial académico</a></li>
+                        <li><a href="evaluacion_alumno.html">Evaluación docente</a></li>
+                        <li><a href="pagos.html">Referencias de pago</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="user-info">
+            <a href="../index.html">Salir</a>
+        </div>
+    </div>
+        <div class="title">BIENVENIDO A TU COMUNIDAD UNIVERSITARIA</div>
+        <div class="info-container">
+            <div class="info-photo">
+                <img src="../img/alumna1.jpg" alt="Foto del Alumno">
+            </div>
+            <div class="info-details">
+                <div class="info-header">Información del alumno:</div> <br>
+                <div>
+                    <label>Nombre:</label>
+                    <input type="text" value="Nancy Vanessa Cayetano Morales" readonly>
+                </div>
+                <div>
+                    <label>Matrícula:</label>
+                    <input type="text" value="221160024" readonly>
+                </div>
+                <div>
+                    <label>Licenciatura:</label>
+                    <input type="text" value="Ingeniería en Sistemas Computacionales" readonly>
+                </div>
+                <div>
+                    <label>Modalidad:</label>
+                    <input type="text" value="Sabatino" readonly>
+                </div>
+                <div>
+                    <label>Grado:</label>
+                    <input type="text" value="Noveno" readonly>
+                </div>
+                <div>
+                    <label>Ciclo Actual:</label>
+                    <input type="text" value="24/3" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="info-registered">
+            <div class="info-header">Información registrada:</div> <br>
+            <div>
+                <label for="correo">Correo:</label>
+                <input type="text" id="correo" placeholder=" " readonly>
+            </div>
+            <div>
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono" placeholder=" " readonly>
+            </div>
+            <div>
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" placeholder=" " readonly>
+            </div>
+        </div>
+        <div class="button-group">
+            <a href="#" class="button-edit" onclick="enableEditing()">Editar</a>
+            <a href="#" class="button-save" onclick="saveChanges()" style="display: none;">Guardar</a>
+        </div>
+    </div>
+    <div class="notification" id="notification">
+        <div class="title">Notificación</div>
+        <div class="message">Se guardó la información exitosamente</div>
+        <button class="button" onclick="hideNotification()">Aceptar</button>
+    </div>
+    <div class="notification error-notification" id="errorNotification">
+        <div class="title">Error</div>
+        <div class="message">No se pueden dejar campos vacíos</div>
+        <button class="button" onclick="hideErrorNotification()">Aceptar</button>
+    </div>
+    <div class="footer">© Derechos reservados a Nancy Vanessa Cayetano Morales / Karla Nelly Arteaga Sánchez / Eduardo Rafael Casasola García</div>
+
+    <script>
+        function enableEditing() {
+            document.getElementById('correo').removeAttribute('readonly');
+            document.getElementById('telefono').removeAttribute('readonly');
+            document.getElementById('direccion').removeAttribute('readonly');
+            document.querySelector('.button-edit').style.display = 'none';
+            document.querySelector('.button-save').style.display = 'inline-block';
+        }
+
+        function saveChanges() {
+            var correo = document.getElementById('correo').value.trim();
+            var telefono = document.getElementById('telefono').value.trim();
+            var direccion = document.getElementById('direccion').value.trim();
+
+            if (correo === '' || telefono === '' || direccion === '') {
+                showErrorNotification();
+                return;
+            }
+
+            // Aquí puedes agregar la lógica para guardar los cambios en el servidor
+            document.getElementById('correo').setAttribute('readonly', true);
+            document.getElementById('telefono').setAttribute('readonly', true);
+            document.getElementById('direccion').setAttribute('readonly', true);
+            document.querySelector('.button-edit').style.display = 'inline-block';
+            document.querySelector('.button-save').style.display = 'none';
+            showNotification('Tu información ha sido actualizada correctamente.');
+        }
+
+        function showNotification(message) {
+            var notification = document.getElementById('notification');
+            notification.querySelector('.message').textContent = message;
+            notification.style.display = 'block';
+        }
+
+        function hideNotification() {
+            document.getElementById('notification').style.display = 'none';
+        }
+
+        function showErrorNotification() {
+            var errorNotification = document.getElementById('errorNotification');
+            errorNotification.style.display = 'block';
+        }
+
+        function hideErrorNotification() {
+            document.getElementById('errorNotification').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
