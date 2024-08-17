@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evaluación Docente - UPEM Tecámac</title>
+    <title>Horario Alumno - UPEM Tecámac</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -148,32 +148,69 @@
             color: #070546;
         }
 
+        /* Estilos generales para todas las tablas */
         table {
-            width: 90%;
+            width: 60%;
             margin: 0 auto;
             border-collapse: collapse;
             margin-bottom: 80px;
         }
 
-        table, th, td {
-            border: 1px solid #070546;
+        /* Estilos específicos para la Tabla de Horario (Tabla 1) */
+        .tabla-1 {
+            border-collapse: collapse; /* Asegura que las celdas compartan bordes */
         }
 
-        th, td {
+        .tabla-1 th, .tabla-1 td {
             padding: 12px;
             text-align: center;
             font-size: 16px;
+            border-bottom: 1px solid #000000; /* Solo bordes horizontales */
         }
 
-        th {
-            background-color: #070546;
-            color: white;
+        .tabla-1 th {
+            background-color: #f6f5fb;
+            color: rgb(34, 30, 30);
+            /* Ajusta los márgenes y el relleno solo para los encabezados */
+            margin: 10px; /* Agrega margen alrededor del encabezado */
+            padding: 12px; /* Agrega relleno dentro del encabezado */
         }
 
-        td {
+        .tabla-1 td {
+            background-color: #ffffff; /* Asegura que el fondo sea blanco */
+        }
+
+        /* Estilos específicos para la Tabla de Materias (Tabla 2) */
+        .tabla-materias {
+            border-collapse: collapse;
+        }
+
+        .tabla-materias th, .tabla-materias td {
+            padding: 12px;
             text-align: center;
+            font-size: 16px;
+            border: 1px solid #000000; /* Bordes para cada celda */
         }
 
+        .tabla-materias th {
+            background-color: #f6f5fb;
+            color: rgb(34, 30, 30);
+            /* Ajusta los márgenes y el relleno solo para los encabezados */
+            margin: 10px; /* Agrega margen alrededor del encabezado */
+            padding: 12px; /* Agrega relleno dentro del encabezado */
+        }
+
+        .tabla-materias td {
+            background-color: #ffffff; /* Asegura que el fondo sea blanco */
+        }
+
+        /* Estilos para el texto en cursiva */
+        em {
+            font-style: italic;
+            color: black; /* Cambia el color de la letra a negro */
+        }
+
+        /* Otros estilos generales */
         .text {
             width: 100%;
             height: 40px; /* Altura estándar para otros inputs */
@@ -186,19 +223,6 @@
             box-sizing: border-box;
             resize: none; /* Desactivar redimensionamiento manual */
             overflow: hidden; /* Ocultar la barra de desplazamiento */
-        }
-
-        .download-button {
-            display: block;
-            background-color: #8b0c0c;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            width: fit-content;
-            text-align: center;
-            border: 2px solid #070546;
-            margin: 20px auto 80px auto;
         }
 
         .footer {
@@ -236,48 +260,68 @@
         </div>
     </div>
     
-    <h1>EVALUACIÓN DOCENTE</h1>
+    <h1>HORARIO</h1>
 
-    <h4>Por favor, complete la siguiente evaluación considerando los siguientes aspectos:</h4>
-
-    <div class="encuesta">
-        <p>
-            <b>Claridad:</b> ¿El profesor explica los conceptos de manera clara y comprensible?<br>
-            <b>Dominio del Tema:</b> ¿El profesor muestra un buen conocimiento del tema?<br>
-            <b>Actitud:</b> ¿El profesor es respetuoso y demuestra una actitud positiva?<br>
-            <b>Puntualidad:</b> ¿El profesor llega a tiempo a las clases y las termina a la hora acordada?<br>
-        </p>
+    <div class="tabla-1">
+        <table>
+            <thead>
+                <tr>
+                    <th>Horario</th>
+                    <th>Clave</th>
+                    <th>Materia</th>
+                    <th>Aula</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dato 1</td>
+                    <td>Dato 2</td>
+                    <td>Dato 3</td>
+                    <td>Dato 4</td>
+                </tr>
+                <tr>
+                    <td>Dato 5</td>
+                    <td>Dato 6</td>
+                    <td>Dato 7</td>
+                    <td>Dato 8</td>
+                </tr>
+                <tr>
+                    <td>Dato 1</td>
+                    <td>Dato 2</td>
+                    <td>Dato 3</td>
+                    <td>Dato 4</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-
-    <h4>Use una escala de 1 a 5 para calificar, donde 1 es "Muy Deficiente" y 5 es "Excelente". En la columna de comentarios, puede proporcionar cualquier observación adicional que considere relevante.</h4>
-
-    <table id="dataTable">
+    
+    <table class="tabla-materias">
         <thead>
             <tr>
+                <th>Clave</th>
+                <th>Nombre De La Materia</th>
                 <th>Profesor</th>
-                <th>Materia</th>
-                <th>Claridad</th>
-                <th>Dominio del tema</th>
-                <th>Actitud</th>
-                <th>Puntualidad</th>
-                <th>Comentarios</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Nombre del profesor</td>
-                <td>Nombre de la materia</td>
-                <td><input class="text" type="text"></td>
-                <td><input class="text" type="text"></td>
-                <td><input class="text" type="text"></td>
-                <td><input class="text" type="text"></td>
-                <td><textarea class="text-area" placeholder="Escribe tus comentarios aquí"></textarea></td>
+                <td>LSC30801</td>
+                <td><em>Sistemas De Información Distribuidos</em></td>
+                <td>ING. Martínez Soto Carlos</td>
+            </tr>
+            <tr>
+                <td>LSC30802</td>
+                <td><em>Ingeniería De Sistemas</em></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>LSC30805</td>
+                <td><em>Legislación Informática</em></td>
+                <td></td>
             </tr>
         </tbody>
     </table>
-
-    <a href="#" class="download-button">Enviar evaluación</a>
-
+    
     <div class="footer">
         © Derechos reservados a Nancy Vanessa Cayetano Morales / Karla Nelly Arteaga Sánchez / Eduardo Rafael Casasola García
     </div>
