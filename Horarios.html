@@ -5,191 +5,247 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HORARIOS - UPEM Tecámac</title>
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #333;
+        }
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
+        }
+        .page {
+            width: 793.7px; 
+            height: 1122.5px; 
+            background-color: #ffffff; 
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); 
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
         .header {
-            background: url('img/Encabezado.jpg') no-repeat center;
-            background-size: 100% auto;
+            background: url('img/Encabezado.png') no-repeat center;
+            background-size: cover;
             height: 220px;
-            background-color: transparent;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 100%;
+            position: relative;
         }
         .welcome-message {
             text-align: center;
             font-size: 30px;
             font-weight: bold;
-            margin: 20px;
+            margin: 20px 0;
         }
         .footer {
-            margin-top: 20px;
+            margin-top: auto;
             font-style: italic;
             font-size: 14px;
             text-align: center;
             background-color: #070546;
             padding: 20px 0;
             color: white;
-        }
-        table {
-            margin: 20px auto; /* Centrar las tablas */
-            border-collapse: collapse; /* Colapsar bordes */
-            width: 90%; /* Ancho de la primera tabla */
-        }
-        .tabla-1 th {
-            border: 1px solid #000; /* Bordes para la cabecera */
-            border-bottom: 2px solid #000; /* Bordes más gruesos para la primera fila */
-            padding: 8px; /* Espaciado dentro de las celdas */
-        }
-        .tabla-1 td {
-            border-top: 1px solid #000; /* Borde superior para todas las celdas */
-            border-bottom: 1px solid #000; /* Borde inferior para todas las celdas */
-            padding: 8px; /* Espaciado dentro de las celdas */
-        }
-        .tabla-2 {
-            margin: 20px auto; /* Centrar las tablas */
-            width: 80%; /* Ancho de la segunda tabla */
-            margin-top: 200px; /* Espacio entre las tablas */
-        }
-        .tabla-2 th, .tabla-2 td {
-            border: 1px solid #000; /* Bordes para las celdas de la segunda tabla */
-            padding: 8px; /* Espaciado dentro de las celdas */
+            width: 100%;
         }
         .logout {
-            position: absolute; /* Posiciona el elemento */
-            top: 130px; /* Ajusta la distancia desde la parte superior (100px más abajo) */
-            right: 40px; /* Ajusta la distancia desde el lado derecho */
+            position: absolute;
+            top: 140px;
+            right: 20px;
         }
         .logout a {
-            text-decoration: underline; /* Subrayado */
-            color: #ffffff; /* Color blanco para el texto */
-            font-size: 18px; /* Tamaño de la fuente */
+            text-decoration: underline;
+            color: #ffffff;
+            font-size: 18px;
         }
         .menu-button {
-            position: absolute; /* Posiciona el elemento */
-            top: 130px; /* La misma altura que el enlace "Salir" */
-            left: 30px; /* Ajusta la distancia desde el lado izquierdo */
-            cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+            position: absolute;
+            top: 130px;
+            left: 20px;
+            cursor: pointer;
+            z-index: 1;
         }
         .line {
-            width: 30px; /* Ancho de las líneas */
-            height: 5px; /* Altura de las líneas */
-            background-color: white; /* Color blanco para las líneas */
-            margin: 4px 0; /* Espaciado entre líneas */
+            width: 30px;
+            height: 5px;
+            background-color: rgb(255, 255, 255);
+            margin: 4px 0;
+        }
+        .menu-button.active .line {
+            background-color: #ff0000; /* Cambia las barras a rojo cuando el menú está activo */
         }
         .user-info {
-            position: absolute; /* Posiciona el elemento */
-            top: 130px; /* La misma altura que el enlace "Salir" */
-            right: 140px; /* Ajusta la distancia desde el lado derecho para que no se superponga con el botón "Salir" */
-            color: #ffffff; /* Color blanco para el texto */
-            text-align: left; /* Alinear el texto a la derecha */
-            font-size: 16px; /* Tamaño de la fuente */
+            position: absolute;
+            top: 110px;
+            right: 140px;
+            color: #ffffff;
+            text-align: left;
+            font-size: 16px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 10px auto;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .tabla-1 {
+            width: 80%;
+            margin: 0 auto 300px;
+        }
+        .tabla-1 th {
+            border: 2px solid black;
+        }
+        .tabla-1 td {
+            border-bottom: 2px solid #000000;
+        }
+        .tabla-2 {
+            width: 70%;
+            margin: 0 auto 100px;
+        }
+        .tabla-2 th, .tabla-2 td {
+            border: 2px solid black;
+            padding: 5px;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 170px;
+            left: 20px;
+            background-color: #3f3b83;
+            width: 200px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+        .dropdown-menu a {
+            color: #ff0000;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+        .dropdown-menu a:hover {
+            background-color: #5050aa;
         }
     </style>
 </head>
 <body>
-    <div class="header"></div>
-    <h1 class="welcome-message">HORARIO</h1>
-    <div class="logout">
-        <a href="javascript:void(0);" onclick="salir()">Salir</a>
-    </div>
-    <div class="menu-button" onclick="irInicio()">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-    </div>
-    <div class="user-info">
-        <div>Nombre Apellido</div>
-        <div>123456789</div>
-    </div>
-    
-    <!-- Primera tabla -->
-    <div class="tabla-1">
-        <table>
-            <thead>
-                <tr>
-                    <th>Horario</th>
-                    <th>Clave</th>
-                    <th>Materia</th>
-                    <th>Aula</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Dato 1</td>
-                    <td>Dato 2</td>
-                    <td>Dato 3</td>
-                    <td>Dato 4</td>
-                </tr>
-                <tr>
-                    <td>Dato 5</td>
-                    <td>Dato 6</td>
-                    <td>Dato 7</td>
-                    <td>Dato 8</td>
-                </tr>
-                <tr>
-                    <td>Dato 1</td>
-                    <td>Dato 2</td>
-                    <td>Dato 3</td>
-                    <td>Dato 4</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <div class="page">
+        <div class="header">
+            <div class="menu-button" onclick="toggleMenu()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <div class="user-info">
+                <div>Nombre Apellido</div>
+                <div>123456789</div>
+            </div>
+            <div class="logout">
+                <a href="javascript:void(0);" onclick="salir()">Salir</a>
+            </div>
+            <div class="dropdown-menu" id="menu">
+                <a href="horario.html">Horario</a>
+                <a href="calificaciones.html">Calificaciones</a>
+                <a href="historial_academico.html">Historial Academico</a>
+                <a href="evaluacion_docente.html">Evaluacion Docente</a>
+                <a href="referencia_pago.html">Referencia de Pago</a>
+            </div>
+        </div>
+        <h1 class="welcome-message">HORARIO</h1>
+        <div class="tabla-1">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Horario</th>
+                        <th>Clave</th>
+                        <th>Materia</th>
+                        <th>Aula</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dato 1</td>
+                        <td>Dato 2</td>
+                        <td>Dato 3</td>
+                        <td>Dato 4</td>
+                    </tr>
+                    <tr>
+                        <td>Dato 5</td>
+                        <td>Dato 6</td>
+                        <td>Dato 7</td>
+                        <td>Dato 8</td>
+                    </tr>
+                    <tr>
+                        <td>Dato 1</td>
+                        <td>Dato 2</td>
+                        <td>Dato 3</td>
+                        <td>Dato 4</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <!-- Segunda tabla -->
-    <div class="tabla-2">
-        <table>
-            <thead>
-                <tr>
-                    <th>Clave</th>
-                    <th>Nombre de la Materia</th>
-                    <th>Profesor</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Dato A1</td>
-                    <td>Dato B1</td>
-                    <td>Dato C1</td>
-                </tr>
-                <tr>
-                    <td>Dato A2</td>
-                    <td>Dato B2</td>
-                    <td>Dato C2</td>
-                </tr>
-                <tr>
-                    <td>Dato A3</td>
-                    <td>Dato B3</td>
-                    <td>Dato C3</td>
-                </tr>
-                <tr>
-                    <td>Dato A4</td>
-                    <td>Dato B4</td>
-                    <td>Dato C4</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="footer">
-        © Derechos reservados a Nancy Vanessa Cayetano Morales / Karla Nelly Arteaga Sánchez
+        <div class="tabla-2">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Clave</th>
+                        <th>Nombre de la Materia</th>
+                        <th>Profesor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dato A1</td>
+                        <td>Dato B1</td>
+                        <td>Dato C1</td>
+                    </tr>
+                    <tr>
+                        <td>Dato A2</td>
+                        <td>Dato B2</td>
+                        <td>Dato C2</td>
+                    </tr>
+                    <tr>
+                        <td>Dato A3</td>
+                        <td>Dato B3</td>
+                        <td>Dato C3</td>
+                    </tr>
+                    <tr>
+                        <td>Dato A4</td>
+                        <td>Dato B4</td>
+                        <td>Dato C4</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            © Derechos reservados a Nancy Vanessa Cayetano Morales / Karla Nelly Arteaga Sánchez
+        </div>
     </div>
 
     <script>
         function salir() {
-            // Aquí puedes agregar la lógica para salir, como redirigir a otra página o cerrar sesión
-            alert("Saliendo..."); // Ejemplo de alerta
-            // Redirigir a otra página
-            // window.location.href = 'pagina_de_salida.html'; // Descomenta y cambia por tu URL
+            alert("Saliendo...");
         }
 
         function irInicio() {
-            // Redirige a la página de inicio
-            window.location.href = 'pagina_de_inicio.html'; // Cambia 'pagina_de_inicio.html' por la URL de tu página de inicio
+            window.location.href = 'pagina_de_inicio.html';
+        }
+
+        function toggleMenu() {
+            var menu = document.getElementById('menu');
+            var menuButton = document.querySelector('.menu-button');
+            
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+                menuButton.classList.remove('active');
+            } else {
+                menu.style.display = 'block';
+                menuButton.classList.add('active');
+            }
         }
     </script>
 </body>
