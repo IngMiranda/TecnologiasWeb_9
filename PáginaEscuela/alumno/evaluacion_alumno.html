@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación Docente - UPEM Tecámac</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        h4 {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        h5 {
+            text-align: left;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0px;
+            background-color: #ffffff;
+        }
+
+        .encuesta {
+            margin-left: 20px;
+            text-align: left;
+        }
+
+        .encuesta b {
+            font-weight: bold;
+        }
+
+        .header {
+            height: 220px; /* Ajusta este valor para cambiar la altura del encabezado */
+            background-color: transparent;
+            position: relative;
+            padding: 0 20px;
+            text-align: center; /* Centra el contenido horizontalmente */
+            margin-top: -6px; /* Ajusta este valor para mover el encabezado más abajo o arriba */
+        }
+
+        .header img {
+            max-width: 65%; /* Ajusta el tamaño de la imagen del contenedor */
+            height: auto; /* Mantiene la proporción de la imagen */
+        }
+
+        .menu {
+            position: absolute;
+            top: 100px;
+            left: 250px;
+            z-index: 1000;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu ul li {
+            display: inline-block;
+            position: relative;
+        }
+
+        .menu ul li a {
+            background-color: #8b0c0c;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu ul li a:hover {
+            background-color: #b71c1c;
+        }
+
+        .menu ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #070546;
+            padding: 0;
+            margin: 0;
+            border-radius: 5px;
+        }
+
+        .menu ul li ul li {
+            display: block;
+        }
+
+        .menu ul li ul li a {
+            padding: 10px;
+            background-color: #070546;
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+        .menu ul li ul li a:hover {
+            background-color: #8b0c0c;
+        }
+
+        .menu ul li:hover ul {
+            display: block;
+        }
+
+        .menu .hamburger {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .user-info {
+            position: absolute;
+            top: 85px;
+            right: 240px;
+            color: white;
+            text-align: right;
+        }
+
+        .user-info span {
+            display: block;
+        }
+
+        .user-info a {
+            color: white;
+            text-decoration: underline;
+            margin-left: 240px;
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: transparent;
+            border: none;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 24px;
+            color: #070546;
+        }
+
+        table {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            margin-bottom: 80px;
+        }
+
+        table, th, td {
+            border: 1px solid #070546;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        th {
+            background-color: #070546;
+            color: white;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        .text {
+            width: 100%;
+            height: 40px; /* Altura estándar para otros inputs */
+            box-sizing: border-box;
+        }
+
+        .text-area {
+            width: 100%;
+            min-height: 50px; /* Altura mínima del área de texto */
+            box-sizing: border-box;
+            resize: none; /* Desactivar redimensionamiento manual */
+            overflow: hidden; /* Ocultar la barra de desplazamiento */
+        }
+
+        .download-button {
+            display: block;
+            background-color: #8b0c0c;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            width: fit-content;
+            text-align: center;
+            border: 2px solid #070546;
+            margin: 20px auto 80px auto;
+        }
+
+        .footer {
+            background-color: #070546;
+            color: white;
+            font-style: italic;
+            font-size: 12px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .notification {
+            display: none;
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            background-color: #8b0c0c; /* Fondo rojo para la notificación */
+            color: white;
+            border: 2px solid #070546; /* Contorno azul */
+            border-radius: 5px;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(79, 66, 66, 0.5);
+            z-index: 1000; /* Asegura que la notificación esté por encima de otros elementos */
+        }
+
+        .notification .title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .notification .message {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .notification .button {
+            background-color: #070546; /* Fondo azul para el botón */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none; /* Elimina subrayado */
+        }
+
+        .notification .button:hover {
+            background-color: #ffffff; /* Fondo blanco en hover */
+            color: #070546; /* Texto azul en hover */
+        }
+
+        .error-notification {
+            background-color: #8b0c0c; /* Fondo rojo para errores */
+            border-color: #8b0c0c; /* Contorno rojo oscuro */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="inicio_alumno.html">
+            <img src="../img/Encabezado.png" alt="Encabezado">
+        </a>
+        <div class="menu">
+            <ul>
+                <li>
+                    <a href="#" class="hamburger"><i class="fas fa-bars"></i></a>
+                    <ul>
+                        <li><a href="horario_alumno.html">Horario</a></li>
+                        <li><a href="calificaciones_alumno.html">Calificaciones</a></li>
+                        <li><a href="historial.html">Historial académico</a></li>
+                        <li><a href="evaluacion_alumno.html">Evaluación docente</a></li>
+                        <li><a href="pagos.html">Referencias de pago</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="user-info">
+            <span>Vanessa Morales<br>221160024</span>
+            <a href="../index.html">Salir</a>
+        </div>
+    </div>
+    
+    <h1>EVALUACIÓN DOCENTE</h1>
+
+    <h4>Por favor, complete la siguiente evaluación considerando los siguientes aspectos:</h4>
+
+    <div class="encuesta">
+        <p>
+            <b>Claridad:</b> ¿El profesor explica los conceptos de manera clara y comprensible?<br>
+            <b>Dominio del Tema:</b> ¿El profesor muestra un buen conocimiento del tema?<br>
+            <b>Actitud:</b> ¿El profesor es respetuoso y demuestra una actitud positiva?<br>
+            <b>Puntualidad:</b> ¿El profesor llega a tiempo a las clases y las termina a la hora acordada?<br>
+        </p>
+    </div>
+
+    <h4>Use una escala de 1 a 5 para calificar, donde 1 es "Muy Deficiente" y 5 es "Excelente". En la columna de comentarios, puede proporcionar cualquier observación adicional que considere relevante.</h4>
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Profesor</th>
+                <th>Materia</th>
+                <th>Claridad</th>
+                <th>Dominio del tema</th>
+                <th>Actitud</th>
+                <th>Puntualidad</th>
+                <th>Comentarios</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Nombre del profesor</td>
+                <td>Nombre de la materia</td>
+                <td><input class="text" type="text" required></td>
+                <td><input class="text" type="text" required></td>
+                <td><input class="text" type="text" required></td>
+                <td><input class="text" type="text" required></td>
+                <td><textarea class="text-area" placeholder="Escribe tus comentarios aquí" required></textarea></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="#" class="download-button" onclick="submitForm(event)">Enviar la evaluación</a>
+
+    <div class="footer">
+        © Derechos reservados a Nancy Vanessa Cayetano Morales / Karla Nelly Arteaga Sánchez / Eduardo Rafael Casasola García
+    </div>
+    <div class="notification" id="notification">
+        <div class="title">Notificación</div>
+        <div class="message">Se guardó correctamente la información</div>
+        <button class="button" onclick="hideNotification()">Aceptar</button>
+    </div>
+    <div class="notification error-notification" id="errorNotification">
+        <div class="title">Error</div>
+        <div class="message">Favor de llenar todos los campos.</div>
+        <button class="button" onclick="hideErrorNotification()">Aceptar</button>
+    </div>
+
+    <script>
+        document.querySelectorAll('.text-area').forEach(textarea => {
+            textarea.addEventListener('input', () => {
+                textarea.style.height = 'auto';
+                textarea.style.height = textarea.scrollHeight + 'px';
+            });
+        });
+
+        function submitForm(event) {
+            event.preventDefault(); // Evita el envío del formulario
+
+            let isValid = true;
+            document.querySelectorAll('input[required], textarea[required]').forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                }
+            });
+
+            if (isValid) {
+                showNotification("Se guardó correctamente la información");
+            } else {
+                showErrorNotification();
+            }
+        }
+
+        function showNotification(message) {
+            var notification = document.getElementById('notification');
+            notification.querySelector('.message').textContent = message;
+            notification.style.display = 'block';
+        }
+
+        function hideNotification() {
+            document.getElementById('notification').style.display = 'none';
+        }
+
+        function showErrorNotification() {
+            var errorNotification = document.getElementById('errorNotification');
+            errorNotification.style.display = 'block';
+        }
+
+        function hideErrorNotification() {
+            document.getElementById('errorNotification').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

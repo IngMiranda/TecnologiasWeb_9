@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encabezado y Pie de Página</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        .header {
+            height: 220px; /* Ajusta este valor para cambiar la altura del encabezado */
+            background-color: transparent;
+            position: relative;
+            padding: 0 20px;
+            text-align: center; /* Centra el contenido horizontalmente */
+            margin-top: -20px; /* Ajusta este valor para mover el encabezado más abajo o arriba */
+        }
+
+        .header img {
+            max-width: 65%; /* Ajusta el tamaño de la imagen del contenedor */
+            height: auto; /* Mantiene la proporción de la imagen */
+        }
+
+        .menu {
+            position: absolute;
+            top: 100px;
+            left: 250px;
+            z-index: 1000;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu ul li {
+            display: inline-block;
+            position: relative;
+        }
+
+        .menu ul li a {
+            background-color: #8b0c0c;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu ul li a:hover {
+            background-color: #b71c1c;
+        }
+
+        .menu ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #070546;
+            padding: 0;
+            margin: 0;
+            border-radius: 5px;
+        }
+
+        .menu ul li ul li {
+            display: block;
+        }
+
+        .menu ul li ul li a {
+            padding: 10px;
+            background-color: #070546;
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+        .menu ul li ul li a:hover {
+            background-color: #8b0c0c;
+        }
+
+        .menu ul li:hover ul {
+            display: block;
+        }
+
+        .menu .hamburger {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .user-info {
+            position: absolute;
+            top: 85px;
+            right: 240px;
+            color: white;
+            text-align: right;
+        }
+
+        .user-info span {
+            display: block;
+        }
+
+        .user-info a {
+            color: white;
+            text-decoration: underline;
+            margin-left: 240px;
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: transparent;
+            border: none;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center; /* Centra la caja de búsqueda */
+            margin: 20px 0;
+        }
+
+        .search-container input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #070546;
+            border-radius: 5px 0 0 5px;
+            width: 150px;
+        }
+
+        .search-container button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            font-size: 0;
+            background-color: transparent;
+            color: #070546;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+        }
+
+        .search-container button img {
+            height: 40px;
+            width: 40px;
+            object-fit: fill;
+        }
+
+        .footer {
+            background-color: #070546;
+            color: white;
+            font-style: italic;
+            font-size: 12px;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 1000px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 40px; /* Ajusta este valor para mover el contenido más arriba o abajo */
+            margin-left: auto;
+            margin-right: auto; /* Centra el contenedor horizontalmente */
+        }
+
+        main {
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: blue; /* Cambia el color del encabezado a azul */
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 90%;
+            margin: 0 auto;
+            font-size: 12px;
+            border-collapse: collapse;
+        }
+
+        tr {
+            height: 40px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        .boton-pagar {
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .boton-icono-pagar {
+            background-color: maroon;
+            color: white;
+            border: 2px solid blue;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="inicio_alumno.html">
+            <img src="../img/Encabezado.png" alt="Encabezado">
+        </a>
+        <div class="menu">
+            <ul>
+                <li>
+                    <a href="#" class="hamburger"><i class="fas fa-bars"></i></a>
+                    <ul>
+                        <li><a href="horario_alumno.html">Horario</a></li>
+                        <li><a href="calificaciones_alumno.html">Calificaciones</a></li>
+                        <li><a href="historial.html">Historial académico</a></li>
+                        <li><a href="evaluacion_alumno.html">Evaluación docente</a></li>
+                        <li><a href="pagos.html">Referencias de pago</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="user-info">
+            <span>Vanessa Morales<br>221160024</span>
+            <a href="../index.html">Salir</a>
+        </div>
+    </div>
+
+    <div class="contenedor">
+        <main>
+            <h1>REFERENCIAS DE PAGO</h1><br>
+            <table>
+                <tr>
+                    <td colspan="6"><strong>Historial de pagos</strong></td>
+                </tr>
+                <tr>
+                    <td>Semestre</td>
+                    <td>Inscripción</td>
+                    <td>Servicios Estudiantiles</td>
+                    <td>Seguro Estudiantil</td>
+                    <td>Total</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2023-A</td>
+                    <td>$800.00</td>
+                    <td>$150.00</td>
+                    <td>$250.00</td>
+                    <td>$2810</td>
+                    <td><button class="boton-pagar">Pagar</button></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td></td>
+                    <td>Colegiatura Junio</td>
+                    <td>Colegiatura Julio</td>
+                    <td>Colegiatura Agosto</td>
+                    <td>Colegiatura Septiembre</td>
+                    <td>Colegiatura Cuatrimestral</td>
+                </tr>
+                <tr>
+                    <td>2023-A</td>
+                    <td>$1610</td>
+                    <td>$1610</td>
+                    <td>$1610</td>
+                    <td>$1610</td>
+                    <td>$6440</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button class="boton-icono-pagar">Pagar</button></td>
+                    <td><button class="boton-icono-pagar">Pagar</button></td>
+                    <td><button class="boton-icono-pagar">Pagar</button></td>
+                    <td><button class="boton-icono-pagar">Pagar</button></td>
+                    <td><button class="boton-icono-pagar">Pagar</button></td>
+                </tr>
+            </table>
+
+            <h2 style="margin-top: 30px;">Generar fichas de pago</h2>
+            <p style="font-style: italic; color: gray;">Haz clic en el botón para descargar la referencia de pago</p>
+            <table>
+                <tr>
+                    <td>2023-A Pago inicial</td>
+                    <td>2023-A Colegiatura Junio</td>
+                    <td>2023-A Colegiatura Julio</td>
+                    <td>2023-A Colegiatura Agosto</td>
+                    <td>2023-A Colegiatura Septiembre</td>
+                    <td>2023-A Pago cuatrimestral de colegiaturas</td>
+                </tr>
+                <tr>
+                    <td><button class="boton-icono-pagar">Descargar</button></td>
+                    <td><button class="boton-icono-pagar">Descargar</button></td>
+                    <td><button class="boton-icono-pagar">Descargar</button></td>
+                    <td><button class="boton-icono-pagar">Descargar</button></td>
+                    <td><button class="boton-icono-pagar">Descargar</button></td>
+                    <td><button class="boton-icono-pagar">Descargar</button></td>
+                </tr>
+            </table>
+        </main>
+    </div>
+
+    <div class="footer">
+        © Derechos reservados a Nancy Vanessa Cayetano Morales / Karla Nelly Arteaga Sánchez / Eduardo Rafael Casasola García
+    </div>
+</body>
+</html>
