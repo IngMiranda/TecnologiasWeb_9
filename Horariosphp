@@ -1,0 +1,278 @@
+<?php
+// Configuración de la base de datos
+$servername = "localhost";
+$username = "tu_usuario";
+$password = "tu_contraseña";
+$dbname = "universidad";
+
+// Crear conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+// Función para obtener los datos de la tabla horarios
+function obtenerHorarios($conn) {
+    $sql = "SELECT horario, clave, materia, aula FROM horarios";
+    return $conn->query($sql);
+}
+
+// Función para obtener los datos de la tabla materias
+function obtenerMaterias($conn) {
+    $sql = "SELECT clave, nombre_materia, profesor FROM materias";
+    return $conn->query($sql);
+}
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HORARIOS - UPEM Tecámac</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #333;
+        }
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .page {
+            width: 793.7px; 
+            height: 1122.5px; 
+            background-color: #ffffff; 
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); 
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .header {
+            background: url('img/Encabezado.png') no-repeat center;
+            background-size: cover;
+            height: 220px;
+            width: 100%;
+            position: relative;
+        }
+        .welcome-message {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .footer {
+            margin-top: auto;
+            font-style: italic;
+            font-size: 14px;
+            text-align: center;
+            background-color: #070546;
+            padding: 20px 0;
+            color: white;
+            width: 100%;
+        }
+        .logout {
+            position: absolute;
+            top: 140px;
+            right: 20px;
+        }
+        .logout a {
+            text-decoration: underline;
+            color: #ffffff;
+            font-size: 18px;
+        }
+        .menu-button {
+            position: absolute;
+            top: 130px;
+            left: 20px;
+            cursor: pointer;
+            z-index: 1;
+        }
+        .line {
+            width: 30px;
+            height: 5px;
+            background-color: rgb(255, 255, 255);
+            margin: 4px 0;
+        }
+        .menu-button.active .line {
+            background-color: #ff0000; /* Cambia las barras a rojo cuando el menú está activo */
+        }
+        .user-info {
+            position: absolute;
+            top: 110px;
+            right: 140px;
+            color: #ffffff;
+            text-align: left;
+            font-size: 16px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 10px auto;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .tabla-1 {
+            width: 80%;
+            margin: 0 auto 300px;
+        }
+        .tabla-1 th {
+            border: 2px solid black;
+        }
+        .tabla-1 td {
+            border-bottom: 2px solid #000000;
+        }
+        .tabla-2 {
+            width: 70%;
+            margin: 0 auto 100px;
+        }
+        .tabla-2 th, .tabla-2 td {
+            border: 2px solid black;
+            padding: 5px;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 170px;
+            left: 20px;
+            background-color: #3f3b83;
+            width: 200px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+        .dropdown-menu a {
+            color: #ff0000;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+        .dropdown-menu a:hover {
+            background-color: #5050aa;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="menu-button" onclick="toggleMenu()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <div class="user-info">
+                <div>Nombre Apellido</div>
+                <div>123456789</div>
+            </div>
+            <div class="logout">
+                <a href="javascript:void(0);" onclick="salir()">Salir</a>
+            </div>
+            <div class="dropdown-menu" id="menu">
+                <a href="horario.html">Horario</a>
+                <a href="calificaciones.html">Calificaciones</a>
+                <a href="historial_academico.html">Historial Academico</a>
+                <a href="evaluacion_docente.html">Evaluacion Docente</a>
+                <a href="referencia_pago.html">Referencia de Pago</a>
+            </div>
+        </div>
+
+        <h1 class="welcome-message">HORARIO</h1>
+        <div class="tabla-1">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Horario</th>
+                        <th>Clave</th>
+                        <th>Materia</th>
+                        <th>Aula</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $resultHorarios = obtenerHorarios($conn);
+
+                    if ($resultHorarios->num_rows > 0) {
+                        while($row = $resultHorarios->fetch_assoc()) {
+                            echo "<tr>
+                                    <td>" . $row["horario"]. "</td>
+                                    <td>" . $row["clave"]. "</td>
+                                    <td>" . $row["materia"]. "</td>
+                                    <td>" . $row["aula"]. "</td>
+                                  </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='4'>No hay datos disponibles</td></tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tabla-2">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Clave</th>
+                        <th>Nombre de la Materia</th>
+                        <th>Profesor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $resultMaterias = obtenerMaterias($conn);
+
+                    if ($resultMaterias->num_rows > 0) {
+                        while($row = $resultMaterias->fetch_assoc()) {
+                            echo "<tr>
+                                    <td>" . $row["clave"]. "</td>
+                                    <td>" . $row["nombre_materia"]. "</td>
+                                    <td>" . $row["profesor"]. "</td>
+                                  </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='3'>No hay datos disponibles</td></tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            © Derechos reservados a Nancy Vanessa Cayetano Morales / Karla Nelly Arteaga Sánchez
+        </div>
+    </div>
+
+    <script>
+        function salir() {
+            alert("Saliendo...");
+        }
+
+        function irInicio() {
+            window.location.href = 'pagina_de_inicio.html';
+        }
+
+        function toggleMenu() {
+            var menu = document.getElementById('menu');
+            var menuButton = document.querySelector('.menu-button');
+            
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+                menuButton.classList.remove('active');
+            } else {
+                menu.style.display = 'block';
+                menuButton.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
+
+<?php
+$conn->close();
+?>

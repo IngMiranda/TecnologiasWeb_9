@@ -1,0 +1,255 @@
+<?php
+// Configuración de la base de datos
+$servername = "localhost";
+$username = "tu_usuario";
+$password = "tu_contraseña";
+$dbname = "universidad";
+
+// Crear conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+// Función para obtener los datos de calificaciones
+function obtenerCalificaciones($conn) {
+    $sql = "SELECT clave, materia, parcial1, parcial2, ordinario, extraordinario, promedio, asistencia, status FROM calificaciones";
+    return $conn->query($sql);
+}
+
+// Función para calcular el promedio global
+function calcularPromedioGlobal($conn) {
+    $sql = "SELECT AVG(promedio) as promedio_global FROM calificaciones";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        return $result->fetch_assoc()['promedio_global'];
+    }
+    return null;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALIFICACIONES - UPEM Tecámac</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #333;
+        }
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .page {
+            width: 793.7px;
+            height: 1122.5px;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .header {
+            background: url('img/Encabezado.png') no-repeat center;
+            background-size: cover;
+            height: 220px;
+            width: 100%;
+            position: relative;
+        }
+        .welcome-message {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .footer {
+            margin-top: auto;
+            font-style: italic;
+            font-size: 14px;
+            text-align: center;
+            background-color: #070546;
+            padding: 20px 0;
+            color: white;
+            width: 100%;
+        }
+        .logout {
+            position: absolute;
+            top: 140px;
+            right: 20px;
+        }
+        .logout a {
+            text-decoration: underline;
+            color: #ffffff;
+            font-size: 18px;
+        }
+        .menu-button {
+            position: absolute;
+            top: 130px;
+            left: 20px;
+            cursor: pointer;
+            z-index: 1;
+        }
+        .line {
+            width: 30px;
+            height: 5px;
+            background-color: rgb(255, 255, 255);
+            margin: 4px 0;
+        }
+        .user-info {
+            position: absolute;
+            top: 110px;
+            right: 140px;
+            color: #ffffff;
+            text-align: left;
+            font-size: 16px;
+        }
+        table {
+            margin: 15px auto;
+            width: 95%;
+            border-collapse: separate;
+            border-spacing: 0;
+            text-align: center;
+        }
+        th, td {
+            border: none;
+            padding: 8px;
+            text-align: center;
+        }
+        .promedio-global {
+            text-align: center;
+            margin: 0 auto 200px;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 170px;
+            left: 20px;
+            background-color: #3f3b83;
+            width: 200px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+        .dropdown-menu a {
+            color: #ff0000;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+        .dropdown-menu a:hover {
+            background-color: #5050aa;
+        }
+        .menu-button.active .line {
+            background-color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="menu-button" onclick="toggleMenu()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <div class="user-info">
+                <div>Nombre Apellido</div>
+                <div>123456789</div>
+            </div>
+            <div class="logout">
+                <a href="javascript:void(0);" onclick="salir()">Salir</a>
+            </div>
+            <div class="dropdown-menu" id="menu">
+                <a href="horario.html">Horario</a>
+                <a href="calificaciones.html">Calificaciones</a>
+                <a href="historial_academico.html">Historial Academico</a>
+                <a href="evaluacion_docente.html">Evaluacion Docente</a>
+                <a href="referencia_pago.html">Referencia de Pago</a>
+            </div>
+        </div>
+
+        <h1 class="welcome-message">CALIFICACIONES</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Clave</th>
+                    <th>Materia</th>
+                    <th>1er <br>Parcial</th>
+                    <th>2do <br>Parcial</th>
+                    <th>Ordinario</th>
+                    <th>Extraordinario</th>
+                    <th>Promedio</th>
+                    <th>%<br>Asistencia</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $resultCalificaciones = obtenerCalificaciones($conn);
+
+                if ($resultCalificaciones->num_rows > 0) {
+                    while($row = $resultCalificaciones->fetch_assoc()) {
+                        echo "<tr>
+                                <td>" . $row["clave"]. "</td>
+                                <td>" . $row["materia"]. "</td>
+                                <td>" . $row["parcial1"]. "</td>
+                                <td>" . $row["parcial2"]. "</td>
+                                <td>" . $row["ordinario"]. "</td>
+                                <td>" . $row["extraordinario"]. "</td>
+                                <td>" . $row["promedio"]. "</td>
+                                <td>" . $row["asistencia"]. "</td>
+                                <td>" . $row["status"]. "</td>
+                              </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='9'>No hay datos disponibles</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+        <div class="promedio-global">
+            <h2>PROMEDIO GLOBAL: 
+                <span id="promedioValor">
+                    <?php 
+                    $promedioGlobal = calcularPromedioGlobal($conn);
+                    echo $promedioGlobal ? number_format($promedioGlobal, 2) : 'N/A'; 
+                    ?>
+                </span>
+            </h2>
+        </div>
+        <div class="footer">
+            © Derechos reservados a Nancy Vanessa Cayetano Morales / Karla Nelly Arteaga Sánchez
+        </div>
+    </div>
+
+    <script>
+        function salir() {
+            alert("Saliendo...");
+        }
+
+        function toggleMenu() {
+            var menu = document.getElementById('menu');
+            var menuButton = document.querySelector('.menu-button');
+            
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+                menuButton.classList.remove('active');
+            } else {
+                menu.style.display = 'block';
+                menuButton.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
+
+<?php
+$conn->close();
+?>
